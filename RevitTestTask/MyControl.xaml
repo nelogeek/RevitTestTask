@@ -6,8 +6,16 @@
              xmlns:local="clr-namespace:RevitTestTask"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Red">
-        <Label HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="70px">ХУЙ</Label>
-        
+    <Grid Background="White">
+        <Label HorizontalAlignment="Center" Margin="0px 20px 0px 0px" FontSize="15" >
+            CALCULATE THE TOTAL VALUES OF YOUR PARAMETERS
+        </Label>
+        <Expander Header="Стены" IsExpanded="True" Margin="0,66,0,0" HorizontalAlignment="Center">
+            <!-- Здесь размещается дополнительное содержимое -->
+            <StackPanel>
+                <Label x:Name="ElementNamesLabel" HorizontalAlignment="Center" Margin="0px 5px 0px 0px" FontSize="15"/>
+                <Label x:Name="TotalLengthLabel" HorizontalAlignment="Center" Margin="0px 20px 0px 0px" FontSize="15"/>
+            </StackPanel>
+        </Expander>
     </Grid>
 </UserControl>

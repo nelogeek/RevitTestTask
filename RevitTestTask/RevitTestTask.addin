@@ -2,7 +2,7 @@
 	<AddIn Type="Application">
 		<Name>NotFirstRevitCommand</Name>
 		<Assembly>RevitTestTask.dll</Assembly>
-		<AddInId>F1F1F1F1-1F1F-1F1F-1F1F-1F1F1F1F1F1F</AddInId>
+		<AddInId>E6EF9DE9-F5F2-454B-8968-4BA2622E5CE5</AddInId>
 		<FullClassName>RevitTestTask.App</FullClassName>
 		<Text>Моя HE первая команда</Text>
 		<VendorId>MyId</VendorId>

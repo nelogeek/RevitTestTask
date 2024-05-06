@@ -21,6 +21,18 @@ namespace RevitTestTask
     /// </summary>
     public partial class MyControl : UserControl, IDockablePaneProvider
     {
+        public string ElementNamesText
+        {
+            get { return ElementNamesLabel.Content as string; }
+            set { ElementNamesLabel.Content = value; }
+        }
+
+        public string TotalLengthText
+        {
+            get { return TotalLengthLabel.Content as string; }
+            set { TotalLengthLabel.Content = value; }
+        }
+
         public MyControl()
         {
             InitializeComponent();

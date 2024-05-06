@@ -28,16 +28,17 @@ namespace RevitTestTask
             // Регистрируем панель с помощью данных провайдера
             application.RegisterDockablePane(MyControl.PaneId, MyControl.PaneName, control);
 
-
-            // рабочее
-            //application.SelectionChanged += OnSelectionChanged;
+            // Подписываемся на событие SelectionChanged
+            application.SelectionChanged += (sender, e) => OnSelectionChanged(control, e);
 
             return Result.Succeeded;
         }
 
 
+
         private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             var document = e.GetDocument();
             var elementIds = e.GetSelectedElements();
             double totalLength = 0.0;
@@ -59,14 +60,47 @@ namespace RevitTestTask
                 }
 
                 // Добавляем имя элемента к строке с названиями
-                allElementNames += $"\n - {element.Name}, ";
+                allElementNames += $"\n - {element.Name}";
             }
 
-            // Удаляем последнюю запятую и пробел из строки с названиями
-            allElementNames = allElementNames.TrimEnd(' ', ',');
+            // Обновляем текст Label на пользовательском элементе управления
+            MyControl control = sender as MyControl;
+            if (control != null)
+            {
+                control.ElementNamesText = allElementNames;
+                control.TotalLengthText = $"Сумма всех длин: {totalLength:F3} м";
+            }
 
-            // Выводим названия всех объектов и их общую длину в диалоговое окно
-            TaskDialog.Show("Выбранные элементы", $"Названия всех объектов: {allElementNames}\nСумма всех длин: {totalLength:F3} м");
+
+
+
+
+            //var document = e.GetDocument();
+            //var elementIds = e.GetSelectedElements();
+            //double totalLength = 0.0;
+            //string allElementNames = "";
+
+            //foreach (var elementId in elementIds)
+            //{
+            //    var element = document.GetElement(elementId);
+            //    var lengthParam = element.LookupParameter("Длина");
+
+            //    // Проверяем, есть ли параметр длины у текущего элемента
+            //    if (lengthParam != null)
+            //    {
+            //        // Получаем значение параметра длины
+            //        double length = lengthParam.AsDouble();
+
+            //        // Добавляем длину к общей сумме
+            //        totalLength += length;
+            //    }
+
+            //    // Добавляем имя элемента к строке с названиями
+            //    allElementNames += $"\n - {element.Name}";
+            //}
+
+            //// Выводим названия всех объектов и их общую длину в диалоговое окно
+            //TaskDialog.Show("Выбранные элементы", $"Названия всех объектов: {allElementNames}\nСумма всех длин: {totalLength:F3} м");
         }
 
     }
